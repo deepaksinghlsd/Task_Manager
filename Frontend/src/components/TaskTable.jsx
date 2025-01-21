@@ -1,61 +1,22 @@
-// import React, { useEffect, useState } from "react";
-// import { fetchTasks } from "../api/api";
-
-// const TaskTable = () => {
-//   const [tasks, setTasks] = useState([]);
-
-//   useEffect(() => {
-//     const getTasks = async () => {
-//       const { data } = await fetchTasks();
-//       setTasks(data);
-//     };
-
-//     getTasks();
-//   }, []);
-
-//   return (
-//     <table>
-//       <thead>
-//         <tr>
-//           <th>ID</th>
-//           <th>Name</th>
-//           <th>Status</th>
-//           <th>Created At</th>
-//         </tr>
-//       </thead>
-//       <tbody>
-//         {tasks.map((task) => (
-//           <tr key={task.id}>
-//             <td>{task.id}</td>
-//             <td>{task.name}</td>
-//             <td>{task.status}</td>
-//             <td>{task.created_at}</td>
-//           </tr>
-//         ))}
-//       </tbody>
-//     </table>
-//   );
-// };
-
-// export default TaskTable;
 
 import React from "react";
 import axios from "axios";
 import socket from "../confiq/socket";
+import{updateTask , deleteTask} from "../api/api"
 
 const TaskTable = ({ tasks}) => {
   const updateStatus = async (id, status,index) => {
     try {
-      await axios.put(`http://localhost:3500/tasks/${id}`, { status });
+      await updateTask(id ,status)
       socket.emit("task_update", { id: index, field: status });
     } catch (error) {
       console.error("Error updating status:", error);
     }
   };
 
-  const deleteTask = async (id,index) => {
+  const DeleteTask = async (id,index) => {
     try {
-      await axios.delete(`http://localhost:3500/tasks/${id}`);
+      deleteTask(id);
       socket.emit("task_remove", index);
     } catch (error) {
       console.error("Error deleting task:", error);
@@ -90,7 +51,7 @@ const TaskTable = ({ tasks}) => {
             </td>
             <td className="border px-4 py-2">
               <button
-                onClick={() => deleteTask(task.id,index+1)}
+                onClick={() => DeleteTask(task.id,index+1)}
                 className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700"
               >
                 Delete
