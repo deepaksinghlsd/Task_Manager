@@ -26,8 +26,8 @@ const App = () => {
       <h1 className="text-2xl font-bold text-center mb-4">
         Task Management Dashboard
       </h1>
-      <TaskTable tasks={tasks} FetchTasks={FetchTasks} />
       <AddTaskModal FetchTasks={FetchTasks} />
+      <TaskTable tasks={tasks} FetchTasks={FetchTasks} />
       <ToastContainer />
     </div>
   );

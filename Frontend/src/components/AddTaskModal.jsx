@@ -22,33 +22,34 @@ const AddTaskModal = ({ FetchTasks }) => {
     }
   };
   return (
-    <div className="mt-4">
-      <h2 className="text-lg font-bold mb-2">Add New Task</h2>
-      <div className="flex gap-2 mb-2">
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Task Name"
-          className="border p-2 rounded w-full"
-        />
-        <select
-          value={status}
-          onChange={(e) => setStatus(e.target.value)}
-          className="border p-2 rounded"
-        >
-          <option value="Pending">Pending</option>
-          <option value="In Progress">In Progress</option>
-          <option value="Completed">Completed</option>
-        </select>
-      </div>
+    <div className="mt-4 p-4 border rounded shadow-lg bg-white">
+    <h2 className="text-lg font-bold mb-4 text-gray-800">Add New Task</h2>
+    <div className="flex items-center gap-4">
+      <input
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="Task Name"
+        className="border p-3 rounded flex-grow focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+      <select
+        value={status}
+        onChange={(e) => setStatus(e.target.value)}
+        className="border p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+      >
+        <option value="Pending">Pending</option>
+        <option value="In Progress">In Progress</option>
+        <option value="Completed">Completed</option>
+      </select>
       <button
         onClick={addTask}
-        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
+        className="bg-blue-500 text-white px-6 py-3 rounded hover:bg-blue-600 transition-all"
       >
         Add Task
       </button>
     </div>
+  </div>
+  
   );
 };
 
